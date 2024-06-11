@@ -1,3 +1,9 @@
+require "rake/extensiontask"
+
+Rake::ExtensionTask.new "digest/tiger" do |ext|
+  ext.lib_dir = "lib/digest/tiger"
+end
+
 require 'bundler/gem_tasks'
 
 gemspec = Bundler::GemHelper.gemspec
@@ -7,12 +13,6 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'test'
   test.test_files = gemspec.test_files
   test.verbose = true
-end
-
-require 'rake/extensiontask'
-Rake::ExtensionTask.new('tiger', gemspec) do |ext|
-  ext.ext_dir = 'ext/digest/tiger'
-  ext.lib_dir = 'lib/digest'
 end
 
 require 'rdoc/task'
